@@ -13,9 +13,6 @@ contract PrimasToken is StandardToken {
     unit deployTime;
 
     unit incentivesPool;
-    unit lastInflationDayStart;
-
-    address incentiveDistributors;
 
     function PrimasToken() {
         initialAmount = 100000000 * 10 ** decimals;
@@ -28,7 +25,17 @@ contract PrimasToken is StandardToken {
         lastInflationDayStart = 0;
     }
 
-    function inflation() returns (bool success) {
+    modifier ownerOnly() {
+        require(msg.sender == initialOwner);
+        _;
+    }
+
+
+    /* ====================== Inflation related methods ============================ */
+
+    unit lastInflationDayStart;
+
+    function inflate() returns (bool success) {
 
         unit currentTime = block.timestamp;
 
@@ -36,7 +43,7 @@ contract PrimasToken is StandardToken {
 
         if(lastInflationDayStart == currentDayStart)
         {
-            return;
+            return false;
         }
 
         lastInflationDayStart = currentDayStart;
@@ -45,12 +52,51 @@ contract PrimasToken is StandardToken {
 
         if(currentInflationRateDoubled <= 0)
         {
-            return;
+            return false;
         }
 
         inflationAmount = initialAmount * currentInflationRateDoubled / 2;
 
         incentivesPool += inflationAmount;
         totalSupply += inflationAmount;
+
+        return true;
+    }
+
+    /* ====================== Incentives related methods ============================ */
+
+    modifier incentivesOperatorsOnly () {
+        require(incentivesOperators[msg.sender] == 1);
+        _;
+    }
+
+    function updateIncentivesOperator(address _operator, unit _value) ownerOnly() returns (bool success) {
+        if(_value != 0)
+        {
+            incentivesOperators[_operator] = 1;
+        }else{
+            incentivesOperators[_operator] = 0;
+        }
+
+        return true;
+    }
+
+    function incentivesIn(unit _value) incentivesOperatorsOnly () returns (bool success) {
+
+        require(balances[msg.sender] >= _value && incentivesPool + _value > incentivesPool);
+
+        balances[msg.sender] -= _value;
+        incentivesPool += _value;
+
+        return true;
+    }
+
+    function incentivesOut(unit amount) incentivesOperatorsOnly () returns (bool success) {
+        require( incentivesPool >= _value && balances[msg.sender] + _value > balances[msg.sender]);
+
+        incentivesPool -= _value;
+        balances[msg.sender] += _value;
+
+        return true;
     }
 }
