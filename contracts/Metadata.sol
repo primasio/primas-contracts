@@ -68,9 +68,7 @@ contract Metadata {
   ) {
 
     Repository storage repository = repositories[dna];
-
     if (! repository.is_real) revert();
-
     DTCP storage dtcp = repository.dtcp;
 
     return (dtcp._type_, dtcp.language, dtcp.title, dtcp._abstract_, dtcp.category);
