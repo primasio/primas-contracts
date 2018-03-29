@@ -1,0 +1,69 @@
+{
+  "contractName": "Authorization",
+  "abi": [],
+  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820d7aad00fb808487cdbd2e9072e28dbbb2c77d5a6d520a0a6de2ea5d2569202650029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820d7aad00fb808487cdbd2e9072e28dbbb2c77d5a6d520a0a6de2ea5d2569202650029",
+  "sourceMap": "25:27:5:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "25:27:5:-;;;;;",
+  "source": "pragma solidity ^0.4.8;\n\ncontract Authorization {\n\n}",
+  "sourcePath": "/Users/jiaji/yuanben/primas-contracts/contracts/dtcp/Authorization.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/jiaji/yuanben/primas-contracts/contracts/dtcp/Authorization.sol",
+      "exportedSymbols": {
+        "Authorization": [
+          703
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".8"
+          ]
+        },
+        "id": 702,
+        "name": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            703
+          ],
+          "name": "Authorization",
+          "nodes": [
+            null
+          ],
+          "scope": 704
+        },
+        "id": 703,
+        "name": "ContractDefinition",
+        "src": "25:27:5"
+      }
+    ],
+    "id": 704,
+    "name": "SourceUnit",
+    "src": "0:52:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2017-12-19T11:18:56.288Z"
+}
