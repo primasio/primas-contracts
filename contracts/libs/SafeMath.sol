@@ -1,12 +1,5 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
-
-/**
- * @title SafeMath
- * @dev Math operations with safety checks that throw on error
- *
- * Contract source taken from Open Zeppelin: https://github.com/OpenZeppelin/zeppelin-solidity/blob/v1.4.0/contracts/math/SafeMath.sol
- */
 library SafeMath {
     function mul(uint256 a, uint256 b) internal pure returns (uint256) {
         if (a == 0) {
@@ -18,20 +11,24 @@ library SafeMath {
     }
 
     function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        // assert(b > 0); // Solidity automatically throws when dividing by 0
+        assert(b > 0);
+        // Solidity automatically throws when dividing by 0
         uint256 c = a / b;
-        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+        assert(a == b * c);
         return c;
     }
 
     function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a - b;
         assert(b <= a);
-        return a - b;
+        assert(a == c + b);
+        return c;
     }
 
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
         uint256 c = a + b;
         assert(c >= a);
+        assert(a == c - b);
         return c;
     }
 }
